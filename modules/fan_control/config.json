@@ -1,0 +1,5 @@
+{
+    "influxdb_config_path": "/opt/Raspberry/web/influxdb_config.json",
+    "influxdb_org": "",
+    "influxdb_bucket": ""
+}

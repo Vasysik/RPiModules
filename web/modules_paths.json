@@ -1,0 +1,7 @@
+{
+    "fan_control": {
+        "path": "/opt/Raspberry/modules/fan_control/",
+        "settings": "settings.json",
+        "config": "config.json"
+    }
+}

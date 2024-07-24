@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fan Control</title>
+    <script>
+        function updateCurrentStatus() {
+            fetch('/api/current')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('current-temperature').textContent = data.Temperature + '°C';
+                    document.getElementById('fan-state').textContent = data['Fan State'];
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        setInterval(updateCurrentStatus, 1000);
+
+        window.onload = updateCurrentStatus;  
+    </script>
+</head>
+<body>
+    <h1>Fan Control</h1>
+    <h2>Current Status</h2>
+    <p>Temperature: <span id="current-temperature">{{ current.Temperature }}°C</span></p>
+    <p>Fan State: <span id="fan-state">{{ current['Fan State'] }}</span></p>
+    
+    <h2>Settings</h2>
+    <form action="/update_settings" method="post">
+        <label for="tempOn">Temperature On:</label>
+        <input type="number" id="tempOn" name="tempOn" value="{{ settings.tempOn }}" required><br><br>
+        
+        <label for="tempOff">Temperature Off:</label>
+        <input type="number" id="tempOff" name="tempOff" value="{{ settings.tempOff }}" required><br><br>
+        
+        <label for="mode">Mode:</label>
+        <select id="mode" name="mode" required>
+            <option value="smart" {% if settings.mode == 'smart' %}selected{% endif %}>Smart</option>
+            <option value="normal" {% if settings.mode == 'normal' %}selected{% endif %}>Normal</option>
+            <option value="default" {% if settings.mode == 'default' %}selected{% endif %}>Default</option>
+        </select><br><br>
+        
+        <input type="submit" value="Update Settings">
+    </form>
+</body>
+</html>
