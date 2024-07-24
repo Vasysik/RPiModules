@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify, redirect
 import json
 import os
 import sys
@@ -23,14 +23,22 @@ for module_name, module_info in modules_paths.items():
     app.register_blueprint(blueprint, url_prefix=f'/{module_name}')
     modules.append({
         'name': module_name.replace('_', ' ').title(),
-        'route': f'{module_name}.index',
+        'route': f'{module_name}',
         'icon': f'{module_name}_icon.png',
-        'static': f'{module_name}.static'
+        'static': f'{module_name}/static/'
     })
 
 @app.route('/')
 def index():
-    return render_template('base_layout.html', modules=modules)
+    if modules:
+        first_module_route = modules[0]['route']
+        return redirect(f'/{first_module_route}')
+    else:
+        return "No modules available", 404
+
+@app.route('/api/modules')
+def api_modules():
+    return jsonify(modules)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

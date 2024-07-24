@@ -5,24 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPi Modules Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
             <h2>Modules</h2>
             <div class="module-grid">
-                {% for module in modules %}
-                <a href="{{ url_for(module.route) }}" class="module-button">
-                    <img src="{{ url_for(module.static, filename=module.icon)  }}" alt="{{ module.name }}">
-                    <span>{{ module.name }}</span>
-                </a>
-                {% endfor %}
+                <!-- Modules will be dynamically inserted here -->
             </div>
         </div>
         <div class="content">
             {% block content %}{% endblock %}
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
+
