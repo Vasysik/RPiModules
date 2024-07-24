@@ -2,7 +2,11 @@ from flask import Blueprint, render_template, request, jsonify
 import json
 import os
 
-fan_control = Blueprint('fan_control', __name__)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+fan_control = Blueprint('fan_control', __name__,
+                        template_folder='templates',
+                        static_folder='static',
+                        static_url_path='/fan_control/static')
 
 def read_json(file_path):
     with open(file_path, 'r') as f:
@@ -12,7 +16,6 @@ def write_json(file_path, data):
     with open(file_path, 'w') as f:
         json.dump(data, f, indent=4)
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
 config = read_json(os.path.join(current_dir, 'config.json'))
 settings = read_json(os.path.join(current_dir, 'settings.json'))
 
