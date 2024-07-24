@@ -21,12 +21,15 @@ for module_name, module_info in modules_paths.items():
     if module_info['enable']:
         module = __import__(f"modules.{module_name}.route", fromlist=[''])
         blueprint = getattr(module, module_name)
+        name = module_info['name']
+        route = module_info['route']
+        icon = module_info['icon']
         app.register_blueprint(blueprint, url_prefix=f'/{module_info['route']}')
         modules.append({
-            'name': f'{module_info['name']}',
-            'route': f'{module_info['route']}',
-            'icon': f'{module_info['icon']}',
-            'static': f'{module_info['route']}/static/'
+            'name': f'{name}',
+            'route': f'{route}',
+            'icon': f'{icon}',
+            'static': f'{route}/static/'
         })
 
 @app.route('/')
