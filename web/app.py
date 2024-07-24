@@ -33,8 +33,8 @@ def fan_control():
     if result:
         record = result[0].records[0]
         current_data = {
-            "Temperature": record.get_value_by_key("temperature"),
-            "Fan State": record.get_value_by_key("fan_state")
+            "Temperature": record.values.get("temperature"),
+            "Fan State": record.values.get("fan_state")
         }
     return render_template('fan_control.html', current=current_data, settings=settings)
 
@@ -69,8 +69,8 @@ def api_current():
     if result:
         record = result[0].records[0]
         current_data = {
-            "Temperature": record.get_value_by_key("temperature"),
-            "Fan State": record.get_value_by_key("fan_state")
+            "Temperature": record.values.get("temperature"),
+            "Fan State": record.values.get("fan_state")
         }
     return jsonify(current_data)
 
