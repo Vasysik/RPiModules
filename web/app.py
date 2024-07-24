@@ -24,7 +24,7 @@ for module_name, module_info in modules_paths.items():
         name = module_info['name']
         route = module_info['route']
         icon = module_info['icon']
-        app.register_blueprint(blueprint, url_prefix=f'/{module_info['route']}')
+        app.register_blueprint(blueprint, url_prefix=f'/{route}')
         modules.append({
             'name': f'{name}',
             'route': f'{route}',
