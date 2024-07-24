@@ -21,7 +21,12 @@ for module_name, module_info in modules_paths.items():
     module = __import__(f"modules.{module_name}.route", fromlist=[''])
     blueprint = getattr(module, module_name)
     app.register_blueprint(blueprint, url_prefix=f'/{module_name}')
-    
+    modules.append({
+        'name': module_name.replace('_', ' ').title(),
+        'route': f'{module_name}.index',
+        'icon': f'{module_name}_icon.png',
+        'static': f'{module_name}.static'
+    })
 
 @app.route('/')
 def index():
