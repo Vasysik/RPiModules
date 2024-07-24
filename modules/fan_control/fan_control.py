@@ -21,7 +21,7 @@ client = InfluxDBClient(url=influxdb_config['influxdb_url'], token=influxdb_conf
 write_api = client.write_api(write_options=SYNCHRONOUS)
 
 def write_current_data(temp, pinState):
-    fan_state = "On" if pinState else "Off"
+    fan_state = 1 if pinState else 0
     point = Point("fan_status").tag("location", "raspberry_pi").field("temperature", temp).field("fan_state", fan_state)
     write_api.write(bucket=config['influxdb_bucket'], org=config['influxdb_org'], record=point)
 
@@ -53,7 +53,7 @@ try:
             if temp > tempOn:
                 pinState = True
                 GPIO.output(controlPin, pinState)
-            elif temp < tempOff:
+            elif temp < tempOn:
                 pinState = False
                 GPIO.output(controlPin, pinState)
         else:
