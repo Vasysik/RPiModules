@@ -39,8 +39,8 @@ try:
 
     while True:
         settings = read_json("settings.json")
-        tempOn = settings['tempOn']
-        tempOff = settings['tempOff']
+        tempOn = int(settings['tempOn'])
+        tempOff = int(settings['tempOff'])
         mode = settings['mode']
 
         temp = get_temp()

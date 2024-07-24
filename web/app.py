@@ -36,24 +36,7 @@ def fan_control():
             "Temperature": record.values.get("temperature"),
             "Fan State": record.values.get("fan_state")
         }
-    return render_template('fan_control.html', current=current_data, settings=settings)
-
-@app.route('/fan_control/update_settings', methods=['POST'])
-def update_settings():
-    module = modules['fan_control']
-    path = module['path']
-    settings = read_json(path+module['settings'])
-    
-    temp_on = request.form.get('tempOn')
-    temp_off = request.form.get('tempOff')
-    mode = request.form.get('mode')
-    
-    settings['tempOn'] = int(temp_on)
-    settings['tempOff'] = int(temp_off)
-    settings['mode'] = mode
-    
-    write_json(path+module['settings'], settings)
-    return redirect(url_for('fan_control'))
+    return render_template('fan_control.html', current=current_data)
 
 @app.route('/fan_control/api/current', methods=['GET'])
 def api_current():
@@ -67,11 +50,13 @@ def api_current():
     result = query_api.query(org=influxdb_org, query=query)
     current_data = {}
     if result:
-        record = result[0].records[0]
-        current_data = {
-            "Temperature": record.values.get("temperature"),
-            "Fan State": record.values.get("fan_state")
-        }
+        for table in result:
+            record = table.records[0]
+            field_name = record.get_field()
+            if field_name == 'temperature':
+                current_data["Temperature"] = record.get_value()
+            elif field_name == 'fan_state':
+                current_data["Fan State"] = record.get_value()
     return jsonify(current_data)
 
 @app.route('/fan_control/api/settings', methods=['GET', 'POST'])

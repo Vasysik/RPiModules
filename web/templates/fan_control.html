@@ -15,33 +15,68 @@
                 .catch(error => console.error('Error:', error));
         }
 
-        setInterval(updateCurrentStatus, 1000);
+        function loadSettings() {
+            fetch('/fan_control/api/settings')
+                .then(response => response.json())
+                .then(settings => {
+                    document.getElementById('tempOn').value = settings.tempOn;
+                    document.getElementById('tempOff').value = settings.tempOff;
+                    document.getElementById('mode').value = settings.mode;
+                })
+                .catch(error => console.error('Error:', error));
+        }
 
-        window.onload = updateCurrentStatus;  
+        function saveSettings() {
+            const settings = {
+                tempOn: document.getElementById('tempOn').value,
+                tempOff: document.getElementById('tempOff').value,
+                mode: document.getElementById('mode').value
+            };
+
+            fetch('/fan_control/api/settings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(settings)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    alert('Settings updated successfully');
+                } else {
+                    alert('Error updating settings');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        window.onload = function() {
+            updateCurrentStatus();
+            loadSettings();
+        };
     </script>
 </head>
 <body>
     <h1>Fan Control</h1>
     <h2>Current Status</h2>
-    <p>Temperature: <span id="current-temperature">{{ current.Temperature }}°C</span></p>
-    <p>Fan State: <span id="fan-state">{{ current['Fan State'] }}</span></p>
+    <p>Temperature: <span id="current-temperature">Loading...</span></p>
+    <p>Fan State: <span id="fan-state">Loading...</span></p>
     
     <h2>Settings</h2>
-    <form action="/fan_control/update_settings" method="post">
-        <label for="tempOn">Temperature On:</label>
-        <input type="number" id="tempOn" name="tempOn" value="{{ settings.tempOn }}" required><br><br>
-        
-        <label for="tempOff">Temperature Off:</label>
-        <input type="number" id="tempOff" name="tempOff" value="{{ settings.tempOff }}" required><br><br>
-        
-        <label for="mode">Mode:</label>
-        <select id="mode" name="mode" required>
-            <option value="smart" {% if settings.mode == 'smart' %}selected{% endif %}>Smart</option>
-            <option value="normal" {% if settings.mode == 'normal' %}selected{% endif %}>Normal</option>
-            <option value="default" {% if settings.mode == 'default' %}selected{% endif %}>Default</option>
-        </select><br><br>
-        
-        <input type="submit" value="Update Settings">
-    </form>
+    <label for="tempOn">Temperature On:</label>
+    <input type="number" id="tempOn" required><br><br>
+    
+    <label for="tempOff">Temperature Off:</label>
+    <input type="number" id="tempOff" required><br><br>
+    
+    <label for="mode">Mode:</label>
+    <select id="mode" required>
+        <option value="smart">Smart</option>
+        <option value="normal">Normal</option>
+        <option value="default">Default</option>
+    </select><br><br>
+    
+    <button onclick="saveSettings()">Save Settings</button>
 </body>
 </html>
