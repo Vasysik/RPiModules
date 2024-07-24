@@ -27,8 +27,8 @@ def write_current_data(temp, pinState):
 
 try:
     settings = read_json("settings.json")
-    tempOn = settings['tempOn']
-    tempOff = settings['tempOff']
+    tempOn = int(settings['tempOn'])
+    tempOff = int(settings['tempOff'])
     mode = settings['mode']
     
     controlPin = 14
