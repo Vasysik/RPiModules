@@ -15,12 +15,17 @@ def read_json(file_path):
 
 modules_paths = read_json(os.path.join(current_dir, "modules_paths.json"))
 
-from modules.fan_control.route import fan_control
-app.register_blueprint(fan_control, url_prefix='/fan_control')
+# Динамическая загрузка модулей
+modules = []
+for module_name, module_info in modules_paths.items():
+    module = __import__(f"modules.{module_name}.route", fromlist=[''])
+    blueprint = getattr(module, module_name)
+    app.register_blueprint(blueprint, url_prefix=f'/{module_name}')
+    
 
 @app.route('/')
 def index():
-    return render_template('base_layout.html')
+    return render_template('base_layout.html', modules=modules)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=5000)

@@ -1,7 +1,5 @@
 {
     "fan_control": {
-        "path": "/opt/RPiModules/modules/fan_control/",
-        "settings": "settings.json",
-        "config": "config.json"
+        "path": "/opt/RPiModules/modules/fan_control/"
     }
 }

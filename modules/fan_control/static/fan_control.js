@@ -3,7 +3,7 @@ function updateCurrentStatus() {
         .then(response => response.json())
         .then(data => {
             document.getElementById('current-temperature').textContent = data.Temperature + '°C';
-            document.getElementById('fan-state').textContent = data['Fan State'];
+            document.getElementById('fan-state').textContent = data.Fan_State;
         })
         .catch(error => console.error('Error:', error));
 }

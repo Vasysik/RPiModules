@@ -11,25 +11,29 @@
 
     {% block content %}
     <h1>Fan Control</h1>
-    <h2>Current Status</h2>
-    <p>Temperature: <span id="current-temperature">Loading...</span></p>
-    <p>Fan State: <span id="fan-state">Loading...</span></p>
+    <div class="status-section">
+        <h2>Current Status</h2>
+        <p>Temperature: <span id="current-temperature">Loading...</span></p>
+        <p>Fan State: <span id="fan-state">Loading...</span></p>
+    </div>
     
-    <h2>Settings</h2>
-    <label for="tempOn">Temperature On:</label>
-    <input type="number" id="tempOn" required><br><br>
-    
-    <label for="tempOff">Temperature Off:</label>
-    <input type="number" id="tempOff" required><br><br>
-    
-    <label for="mode">Mode:</label>
-    <select id="mode" required>
-        <option value="smart">Smart</option>
-        <option value="normal">Normal</option>
-        <option value="default">Default</option>
-    </select><br><br>
-    
-    <button onclick="saveSettings()">Save Settings</button>
+    <div class="settings-section">
+        <h2>Settings</h2>
+        <label for="tempOn">Temperature On:</label>
+        <input type="number" id="tempOn" required><br><br>
+        
+        <label for="tempOff">Temperature Off:</label>
+        <input type="number" id="tempOff" required><br><br>
+        
+        <label for="mode">Mode:</label>
+        <select id="mode" required>
+            <option value="smart">Smart</option>
+            <option value="normal">Normal</option>
+            <option value="default">Default</option>
+        </select><br><br>
+        
+        <button onclick="saveSettings()">Save Settings</button>
+    </div>
     {% endblock %}
 </body>
 </html>

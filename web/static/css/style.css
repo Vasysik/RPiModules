@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f0f0f0;
 }
 
 .container {
@@ -10,30 +11,87 @@ body {
 }
 
 .sidebar {
-    width: 200px;
-    background-color: #f0f0f0;
+    width: 250px;
+    background-color: #ffffff;
     padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
 
 .sidebar h2 {
     margin-top: 0;
+    color: #333;
 }
 
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
 }
 
-.sidebar li {
-    margin-bottom: 10px;
-}
-
-.sidebar a {
+.module-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
     text-decoration: none;
     color: #333;
+    transition: background-color 0.3s;
+}
+
+.module-button:hover {
+    background-color: #e0e0e0;
+}
+
+.module-button img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
 }
 
 .content {
     flex-grow: 1;
+    padding: 30px;
+    background-color: #ffffff;
+}
+
+/* Стили для содержимого модуля */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.status-section, .settings-section {
+    background-color: #f8f8f8;
     padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.status-section h2, .settings-section h2 {
+    margin-top: 0;
+    color: #555;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
 }
