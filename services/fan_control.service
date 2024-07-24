@@ -3,8 +3,8 @@ Description=Fan Control Service
 After=network.target
 
 [Service]
-WorkingDirectory=/opt/Raspberry/modules/fan_control/
-ExecStart=python3 /opt/Raspberry/modules/fan_control/fan_control.py
+WorkingDirectory=/opt/RPiModules/modules/fan_control/
+ExecStart=python3 /opt/RPiModules/modules/fan_control/fan_control.py
 Restart=always
 RestartSec=10
 
