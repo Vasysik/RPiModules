@@ -1,8 +1,0 @@
-{
-    "fan_control": {
-        "path": "/opt/RPiModules/modules/fan_control/"
-    },
-    "test": {
-        "path": "/opt/RPiModules/modules/test/"
-    }
-}

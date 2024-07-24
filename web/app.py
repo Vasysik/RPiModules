@@ -13,20 +13,21 @@ def read_json(file_path):
     with open(file_path, 'r') as f:
         return json.load(f)
 
-modules_paths = read_json(os.path.join(current_dir, "modules_paths.json"))
+modules_paths = read_json(os.path.join(current_dir, "modules.json"))
 
 # Динамическая загрузка модулей
 modules = []
 for module_name, module_info in modules_paths.items():
-    module = __import__(f"modules.{module_name}.route", fromlist=[''])
-    blueprint = getattr(module, module_name)
-    app.register_blueprint(blueprint, url_prefix=f'/{module_name}')
-    modules.append({
-        'name': module_name.replace('_', ' ').title(),
-        'route': f'{module_name}',
-        'icon': f'{module_name}_icon.png',
-        'static': f'{module_name}/static/'
-    })
+    if module_info['enable']:
+        module = __import__(f"modules.{module_name}.route", fromlist=[''])
+        blueprint = getattr(module, module_name)
+        app.register_blueprint(blueprint, url_prefix=f'/{module_info['route']}')
+        modules.append({
+            'name': f'{module_info['name']}',
+            'route': f'{module_info['route']}',
+            'icon': f'{module_info['icon']}',
+            'static': f'{module_info['route']}/static/'
+        })
 
 @app.route('/')
 def index():

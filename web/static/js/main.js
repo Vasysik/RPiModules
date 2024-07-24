@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 moduleButton.className = 'module-button';
 
                 const moduleIcon = document.createElement('img');
-                moduleIcon.src = `/${module.static}/${module.icon}`;
+                moduleIcon.src = `/${module.icon}`;
                 moduleIcon.alt = module.name;
                 moduleButton.appendChild(moduleIcon);
 

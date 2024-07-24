@@ -1,0 +1,15 @@
+{
+    "fan_control": {
+        "route": "fan_control",
+        "icon": "static/fan_control_icon.png",
+        "name": "Fan Control",
+        "enable": true
+
+    },
+    "test": {
+        "route": "test",
+        "icon": "static/fan_control_icon.png",
+        "name": "Test",
+        "enable": true
+    }
+}
