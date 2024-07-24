@@ -23,7 +23,7 @@ write_api = client.write_api(write_options=SYNCHRONOUS)
 def write_current_data(temp, pinState):
     fan_state = "On" if pinState else "Off"
     point = Point("fan_status").tag("location", "raspberry_pi").field("temperature", temp).field("fan_state", fan_state)
-    write_api.write(bucket=influxdb_config['influxdb_bucket'], org=influxdb_config['influxdb_org'], record=point)
+    write_api.write(bucket=config['influxdb_bucket'], org=config['influxdb_org'], record=point)
 
 try:
     settings = read_json("settings.json")
