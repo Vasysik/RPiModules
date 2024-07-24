@@ -2,8 +2,10 @@ function updateCurrentStatus() {
     fetch('/fan_control/api/current')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('current-temperature').textContent = data.Temperature + '°C';
-            document.getElementById('fan-state').textContent = data.Fan_State;
+            document.getElementById('current-temperature').textContent = data.temperature + '°C';
+            if(data.fan_state = 0) { document.getElementById('fan-state').textContent = "Off"; }
+            if(data.fan_state = 1) { document.getElementById('fan-state').textContent = "On"; }
+            document.getElementById('rpm').textContent = data.rpm;
         })
         .catch(error => console.error('Error:', error));
 }

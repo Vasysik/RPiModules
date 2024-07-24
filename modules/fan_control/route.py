@@ -46,9 +46,11 @@ def api_current():
             record = table.records[0]
             field_name = record.get_field()
             if field_name == 'temperature':
-                current_data["Temperature"] = record.get_value()
+                current_data["temperature"] = record.get_value()
             elif field_name == 'fan_state':
-                current_data["Fan_State"] = record.get_value()
+                current_data["fan_State"] = record.get_value()
+            elif field_name == 'rpm':
+                current_data["rpm"] = record.get_value()
     return jsonify(current_data)
 
 @fan_control.route('/api/settings', methods=['GET', 'POST'])
