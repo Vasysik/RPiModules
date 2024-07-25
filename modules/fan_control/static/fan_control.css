@@ -1,15 +1,15 @@
 .status-section, .settings-section, .graph-section {
     background-color: var(--bg-primary);
-    padding: 25px;
+    padding: 20px;
     border-radius: 12px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 .status-section h2, .settings-section h2, .graph-section h2 {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     color: var(--accent-color);
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
 }
 
@@ -18,18 +18,16 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px var(--shadow-color);
     padding: 20px;
-    margin-bottom: 20px;
 }
-
 
 h1, h2 {
     color: var(--text-primary);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 p {
     color: var(--text-secondary);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 label {
@@ -55,4 +53,10 @@ input[type="number"], select {
 
 #graph-type {
     margin-bottom: 10px;
+}
+
+#fan-image {
+    width: 100px;
+    height: auto;
+    transition: transform 0.3s linear;
 }

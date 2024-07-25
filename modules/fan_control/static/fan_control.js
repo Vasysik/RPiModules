@@ -1,3 +1,39 @@
+let fanSpeed = 0;
+let isStarting = false;
+let isStopping = false;
+let currentRotation = 0;
+let lastTimestamp = 0;
+
+function updateFanRotation(timestamp) {
+    const fanImage = document.getElementById('fan-image');
+    
+    if (isStarting) {
+        fanSpeed += 0.5;
+        if (fanSpeed >= 20) {
+            isStarting = false;
+        }
+    } else if (isStopping) {
+        fanSpeed -= 0.05;
+        if (fanSpeed <= 0) {
+            isStopping = false;
+            fanSpeed = 0;
+        }
+    }
+
+    if (lastTimestamp !== 0) {
+        const deltaTime = timestamp - lastTimestamp;
+        currentRotation += (fanSpeed * deltaTime) / 16;
+    }
+
+    fanImage.style.transform = `rotate(${currentRotation}deg)`;
+    
+    lastTimestamp = timestamp;
+
+    if (fanSpeed > 0 || isStarting || isStopping) {
+        requestAnimationFrame(updateFanRotation);
+    }
+}
+
 function updateCurrentStatus() {
     fetch('/fan_control/api/current')
         .then(response => response.json())
@@ -5,6 +41,16 @@ function updateCurrentStatus() {
             document.getElementById('current-temperature').textContent = data.temperature + '°C';
             document.getElementById('fan-state').textContent = data.fan_state === 0 ? "Off" : "On";
             document.getElementById('rpm').textContent = data.rpm;
+            
+            if (data.fan_state === 1 && !isStarting && fanSpeed === 0) {
+                isStarting = true;
+                isStopping = false;
+                lastTimestamp = 0;
+                requestAnimationFrame(updateFanRotation);
+            } else if (data.fan_state === 0 && !isStopping && fanSpeed > 0) {
+                isStopping = true;
+                isStarting = false;
+            }
         })
         .catch(error => console.error('Error:', error));
 }
@@ -37,7 +83,7 @@ function saveSettings() {
     .then(response => response.json())
     .then(data => {
         if (data.status === "success") {
-            alert('Settings updated successfully');
+            console.log('Settings updated successfully');
         } else {
             alert('Error updating settings');
         }

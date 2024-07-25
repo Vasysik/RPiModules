@@ -57,6 +57,8 @@ def api_current():
 @fan_control.route('/api/settings', methods=['GET', 'POST'])
 def api_settings():
     if request.method == 'GET':
+        global settings
+        settings = read_json(os.path.join(current_dir, 'settings.json'))
         return jsonify(settings)
     elif request.method == 'POST':
         data = request.json
