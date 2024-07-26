@@ -102,12 +102,9 @@ def get_graph_data():
 
     timestamps = []
     values = []
-    fan_states = []
 
     for table in result:
         for record in table.records:
             timestamps.append(record.get_time().strftime('%Y-%m-%d %H:%M:%S'))
             if record.get_field() == graph_type:
                 values.append(record.get_value())
-            elif record.get_field() == 'fan_state':
-                fan_states.append(round(record.get_value()))  # Округляем состояние вентилятора
