@@ -1,0 +1,14 @@
+[Unit]
+Description=Fan Control Service
+After=network.target
+
+[Service]
+WorkingDirectory= /opt/RPiModules/modules/hamster/
+ExecStart=python3 /opt/RPiModules/modules/hamster/hamster.py
+Restart=always
+RestartSec=10
+User=vasys
+Group=vasys
+
+[Install]
+WantedBy=multi-user.target

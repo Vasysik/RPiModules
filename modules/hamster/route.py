@@ -21,3 +21,18 @@ def api_settings():
         global settings
         settings = read_json(os.path.join(current_dir, 'current.json'))
         return jsonify(settings)
+
+@hamster.route('/api/status', methods=['GET'])
+def api_settings():
+    if request.method == 'GET':
+        global settings
+        settings = read_json(os.path.join(current_dir, 'status.json'))
+        return jsonify(settings)
+
+@hamster.route('/api/config', methods=['GET'])
+def api_settings():
+    if request.method == 'GET':
+        global settings
+        settings = read_json(os.path.join(current_dir, 'config.json'))
+        return jsonify(settings)
+
