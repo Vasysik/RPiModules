@@ -34,7 +34,13 @@ def run_script():
         process.sendline(str(number))
         time.sleep(1)
 
-    process.expect(pexpect.EOF)
+    while True:
+        try:
+            process.expect(pexpect.TIMEOUT, timeout=1)
+        except pexpect.TIMEOUT:
+            continue
+        except pexpect.EOF:
+            break
 
     update_status("not running")
     time.sleep(5)
