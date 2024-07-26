@@ -16,23 +16,17 @@ def index():
     return render_template('hamster.html')
 
 @hamster.route('/api/current', methods=['GET'])
-def api_settings():
+def api_current():
     if request.method == 'GET':
-        global settings
-        settings = read_json(os.path.join(current_dir, 'current.json'))
-        return jsonify(settings)
+        return jsonify(read_json(os.path.join(current_dir, 'current.json')))
 
 @hamster.route('/api/status', methods=['GET'])
-def api_settings():
+def api_status():
     if request.method == 'GET':
-        global settings
-        settings = read_json(os.path.join(current_dir, 'status.json'))
-        return jsonify(settings)
+        return jsonify(read_json(os.path.join(current_dir, 'status.json')))
 
 @hamster.route('/api/config', methods=['GET'])
-def api_settings():
+def api_config():
     if request.method == 'GET':
-        global settings
-        settings = read_json(os.path.join(current_dir, 'config.json'))
-        return jsonify(settings)
+        return jsonify(read_json(os.path.join(current_dir, 'config.json')))
 
