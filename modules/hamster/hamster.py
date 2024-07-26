@@ -6,8 +6,8 @@ def update_status(status):
     with open('status.json', 'w') as f:
         json.dump({"status": status}, f)
 
-def read_configuration():
-    with open('configuration.json', 'r') as f:
+def read_config():
+    with open('config.json', 'r') as f:
         return json.load(f)
 
 def run_script():
@@ -15,7 +15,7 @@ def run_script():
 
     process = pexpect.spawn('python3 hamsterkombat/main.py')
 
-    config = read_configuration()
+    config = read_config()
 
     inputs = []
     if config["Auto Buy Upgrade"] == "ON":
