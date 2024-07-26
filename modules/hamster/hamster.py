@@ -1,6 +1,5 @@
 import pexpect
-import time
-import json
+import time, json, sys
 
 def update_status(status):
     with open('status.json', 'w') as f:
@@ -13,7 +12,7 @@ def read_config():
 def run_script():
     update_status("running")
 
-    process = pexpect.spawn('python3 hamsterkombat/main.py')
+    process = pexpect.spawn('python3 hamsterkombat/main.py', logfile=sys.stdout, encoding='utf-8')
 
     config = read_config()
 
