@@ -1,8 +1,6 @@
-import subprocess
+import pexpect
 import time
-import pyautogui
 import json
-import os
 
 def update_status(status):
     with open('status.json', 'w') as f:
@@ -15,9 +13,7 @@ def read_configuration():
 def run_script():
     update_status("running")
 
-    process = subprocess.Popen(['python3', 'hamsterkombat/main.py'])
-
-    time.sleep(2)
+    process = pexpect.spawn('python3 hamsterkombat/main.py')
 
     config = read_configuration()
 
@@ -28,19 +24,18 @@ def run_script():
         inputs.append(2)
     if config["Auto Complete Cipher"] == "ON":
         inputs.append(3)
-    if config["Auto Complete Mini Game"] == "ON":
+    if config["Auto Complete Mini Game"] == "OFF":
         inputs.append(4)
-    if config["Auto Complete Tasks"] == "ON":
+    if config["Auto Complete Tasks"] == "OFF":
         inputs.append(5)
-    
+
     inputs.append(6)
 
     for number in inputs:
-        pyautogui.write(str(number))
-        pyautogui.press('enter')
+        process.sendline(str(number))
         time.sleep(1)
 
-    process.wait()
+    process.expect(pexpect.EOF)
 
     update_status("not running")
     time.sleep(5)
