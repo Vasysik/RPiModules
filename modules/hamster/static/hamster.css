@@ -50,6 +50,16 @@ span {
     margin-top: 10px;
 }
 
+select {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+    padding: 8px;
+    width: 100%;
+    max-width: 200px;
+}
+
 input[type="text"], button {
     background-color: var(--bg-primary);
     border: 1px solid var(--border-color);

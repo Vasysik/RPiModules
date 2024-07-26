@@ -10,6 +10,10 @@ hamster = Blueprint('hamster', __name__,
 def read_json(file_path):
     with open(file_path, 'r') as f:
         return json.load(f)
+    
+def write_json(file_path, data):
+    with open(file_path, 'w') as f:
+        json.dump(data, f, indent=4)
 
 config = read_json(os.path.join(current_dir, 'hamsterkombat/config.json'))
     
@@ -41,9 +45,16 @@ def api_current_user_element(user, element):
 def api_status():
     return jsonify(read_json(os.path.join(current_dir, 'status.json')))
 
-@hamster.route('/api/config', methods=['GET'])
+@hamster.route('/api/config', methods=['GET', 'POST'])
 def api_config():
-    return jsonify(read_json(os.path.join(current_dir, 'hamster_config.json')))
+    if request.method == 'GET':
+        global settings
+        settings = read_json(os.path.join(current_dir, 'hamster_config.json'))
+        return jsonify(settings)
+    elif request.method == 'POST':
+        data = request.json
+        write_json(os.path.join(current_dir, 'hamster_config.json'), data)
+        return jsonify({"status": "success"}), 200
 
 @hamster.route('/api/tokens', methods=['GET', 'POST', 'DELETE'])
 def api_tokens():

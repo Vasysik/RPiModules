@@ -17,16 +17,6 @@ function loadData() {
             document.getElementById('user-level').textContent = data.wasys.level;
         });
 
-    fetch('/hamster/api/config')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('auto-buy-upgrade').textContent = data['Auto Buy Upgrade'];
-            document.getElementById('auto-complete-cipher').textContent = data['Auto Complete Cipher'];
-            document.getElementById('auto-complete-combo').textContent = data['Auto Complete Combo'];
-            document.getElementById('auto-complete-mini-game').textContent = data['Auto Complete Mini Game'];
-            document.getElementById('auto-complete-tasks').textContent = data['Auto Complete Tasks'];
-        });
-
     loadTokens();
 }
 
@@ -66,6 +56,46 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     });
 });
+
+function loadConfig() {
+    fetch('/hamster/api/config')
+        .then(response => response.json())
+        .then(config => {
+            document.getElementById('auto-buy-upgrade').value = config.Auto_Buy_Upgrade;
+            document.getElementById('auto-complete-combo').value = config.Auto_Complete_Combo;
+            document.getElementById('auto-complete-cipher').value = config.Auto_Complete_Cipher;
+            document.getElementById('auto-complete-mini-game').value = config.Auto_Complete_Mini_Game;
+            document.getElementById('auto-complete-tasks').value = config.Auto_Complete_Tasks;
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+function saveConfig() {
+    const config = {
+        Auto_Buy_Upgrade: document.getElementById('auto-buy-upgrade').value,
+        Auto_Complete_Combo: document.getElementById('auto-complete-combo').value,
+        Auto_Complete_Cipher: document.getElementById('auto-complete-cipher').value,
+        Auto_Complete_Mini_Game: document.getElementById('auto-complete-mini-game').value,
+        Auto_Complete_Tasks: document.getElementById('auto-complete-tasks').value
+    };
+
+    fetch('/hamster/api/config', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(config)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            console.log('Config updated successfully');
+        } else {
+            alert('Error updating config');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
 
 function updateGraph() {
     const graphType = document.getElementById('graph-type').value;
@@ -134,5 +164,6 @@ setInterval(updateGraph, 1000);
 
 window.onload = function() {
     loadData();
+    loadConfig();
     updateGraph();
 };

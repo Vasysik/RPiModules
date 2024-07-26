@@ -35,13 +35,38 @@
             <p>Level: <span id="user-level">Loading...</span></p>
         </div>
 
-        <div class="config-section">
+        <!-- <div class="config-section">
             <h2>Configuration</h2>
             <p>Auto Buy Upgrade: <span id="auto-buy-upgrade">Loading...</span></p>
             <p>Auto Complete Cipher: <span id="auto-complete-cipher">Loading...</span></p>
             <p>Auto Complete Combo: <span id="auto-complete-combo">Loading...</span></p>
             <p>Auto Complete Mini Game: <span id="auto-complete-mini-game">Loading...</span></p>
             <p>Auto Complete Tasks: <span id="auto-complete-tasks">Loading...</span></p>
+        </div> -->
+
+        <div class="config-section">
+            <h2>Configuration</h2>
+            <p>Auto Buy Upgrade: <select id="auto-buy-upgrade">
+                <option value="ON">ON</option>
+                <option value="OFF">OFF</option>
+            </select></p>
+            <p>Auto Complete Combo: <select id="auto-complete-combo">
+                <option value="ON">ON</option>
+                <option value="OFF">OFF</option>
+            </select></p>
+            <p>Auto Complete Cipher: <select id="auto-complete-cipher">
+                <option value="ON">ON</option>
+                <option value="OFF">OFF</option>
+            </select></p>
+            <p>Auto Complete Mini Game: <select id="auto-complete-mini-game">
+                <option value="ON">ON</option>
+                <option value="OFF">OFF</option>
+            </select></p>
+            <p>Auto Complete Tasks: <select id="auto-complete-tasks">
+                <option value="ON">ON</option>
+                <option value="OFF">OFF</option>
+            </select></p>
+            <button onclick="saveConfig()">Save Configuration</button>
         </div>
 
         <div class="token-section">
