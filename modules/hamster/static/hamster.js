@@ -1,10 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     function loadData() {
+        fetch('/hamster/api/status')
+        .then(response => response.json())
+            .then(data => {
+                document.getElementById('status').textContent = data.status;
+                document.getElementById('endString').textContent = data.endString;
+            });
+
         fetch('/hamster/api/current')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('current-status').textContent = data.status;
-                document.getElementById('end-time').textContent = data.endString;
                 document.getElementById('balance-coins').textContent = data.wasys.balanceCoins;
                 document.getElementById('balance-keys').textContent = data.wasys.balanceKeys;
                 document.getElementById('available-taps').textContent = data.wasys.availableTaps;
@@ -31,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(tokens => {
                 const tokenList = document.getElementById('token-list');
                 tokenList.innerHTML = tokens.map(token => 
-                    `<div>${token} <button onclick="removeToken('${token}')">Remove</button></div>`
+                    `<div>${token}</div><button onclick="removeToken('${token}')">Remove</button>`
                 ).join('');
             });
     }
@@ -62,5 +67,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     loadData();
 
-    setInterval(loadData, 30000);
+    setInterval(loadData, 1000);
 });
