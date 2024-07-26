@@ -1,11 +1,124 @@
-/* Общие стили для секций */
-.status-section, .user-stats-section, .config-section {
+.hamster-combat-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.status-section, .user-stats-section, .config-section, .token-section, .graph-section {
     background-color: var(--bg-primary);
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 6px var(--shadow-color);
+    box-shadow: 0 2px 4px var(--shadow-color);
 }
+
+.status-section h2, .user-stats-section h2, .config-section h2, .token-section h2, .graph-section h2 {
+    margin-bottom: 10px;
+    color: var(--accent-color);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+span {
+    font-weight: bold;
+}
+
+.token-input {
+    margin-top: 10px;
+}
+
+select {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+    padding: 8px;
+    width: 100%;
+    max-width: 200px;
+}
+
+input[type="text"], button {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+    padding: 8px;
+    width: 100%;
+    max-width: 200px;
+}
+
+button {
+    background-color: var(--accent-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3a7bc8;
+}
+
+#token-list {
+    margin-top: 10px;
+}
+
+#token-list div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+#token-list .token-text {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+}
+
+#token-list .remove-token {
+    background-color: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+#token-list .remove-token:hover {
+    color: #ff4d4d;
+}
+
+#graph {
+    width: 100%;
+    height: 400px;
+}
+
+#graph-type {
+    margin-bottom: 10px;
+}
+
+.config-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
 
 .section-title {
     color: var(--accent-color);
@@ -16,7 +129,6 @@
     padding-bottom: 10px;
 }
 
-/* Стили для Current Mining Status */
 .status-section {
     display: flex;
     flex-direction: column;
@@ -51,7 +163,6 @@
     color: var(--accent-color);
 }
 
-/* Стили для User Statistics */
 .user-stats-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -80,7 +191,6 @@
     font-size: 20px;
 }
 
-/* Стили для Configuration */
 .config-section {
     background-color: var(--bg-primary);
 }
@@ -101,7 +211,6 @@
     font-weight: 500;
 }
 
-/* Стили для переключателей (оставляем без изменений) */
 .switch {
     position: relative;
     display: inline-block;
@@ -143,14 +252,6 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(26px);
-}
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
 }
 
 .save-button {
