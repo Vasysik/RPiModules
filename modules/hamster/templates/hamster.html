@@ -22,8 +22,16 @@
                 <img src="{{ url_for('hamster.static', filename='hamster_icon.png') }}" alt="Hamster Icon" id="hamster-image">
             </div>
             <div class="status-info">
-                <p><span class="status-label">Status:</span> <span id="current-status">Loading...</span></p>
-                <p><span class="status-label">End String:</span> <span id="end-string">Loading...</span></p>
+                <div class="status-item">
+                    <span class="status-label">Status:</span>
+                    <span class="status-value" id="current-status">Loading...</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">End String:</span>
+                    <div class="console-style">
+                        <span id="end-string">Loading...</span><span class="blink">_</span>
+                    </div>
+                </div>
             </div>
         </div>
 

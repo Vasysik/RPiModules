@@ -150,17 +150,52 @@ button:hover {
 }
 
 .status-info {
-    text-align: center;
+    width: 100%;
+    text-align: left;
 }
 
-.status-info p {
+.status-item {
     margin: 10px 0;
     font-size: 18px;
+    display: flex;
+    align-items: center;
 }
 
 .status-label {
     font-weight: bold;
     color: var(--accent-color);
+    margin-right: 10px;
+    min-width: 80px;
+}
+
+.status-value {
+    font-weight: normal;
+}
+
+.console-style {
+    background-color: #0a0a0a;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.console-style::before {
+    content: '$ ';
+    color: #00ff00;
+}
+
+.blink {
+    animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
 }
 
 .user-stats-section {

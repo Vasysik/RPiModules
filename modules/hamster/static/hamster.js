@@ -133,7 +133,7 @@ function updateGraph() {
                 font: {
                     color: getComputedStyle(document.documentElement).getPropertyValue('--text-primary').trim()
                 },
-                margin: {l: 50, r: 50, b: 50, t: 50, pad: 4},
+                margin: {l: 70, r: 30, b: 50, t: 50, pad: 4},
                 showlegend: false,
                 dragmode: false,
                 displayModeBar: false
