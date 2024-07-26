@@ -71,7 +71,7 @@ function updateGraph() {
     const graphType = document.getElementById('graph-type').value;
     const timeRange = document.getElementById('time-range').value;
 
-    fetch(`/fan_control/api/graph_data?type=${graphType}&range=${timeRange}`)
+    fetch(`/hamster/api/graph_data?type=${graphType}&range=${timeRange}`)
         .then(response => response.json())
         .then(data => {
             const trace = {
