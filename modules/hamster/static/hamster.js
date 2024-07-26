@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetchData('/api/status', 'status-container', renderStatus);
-    fetchData('/api/config', 'config-container', renderConfig);
-    fetchData('/api/current', 'current-container', renderCurrent);
+    fetchData('/hamster/api/status', 'status-container', renderStatus);
+    fetchData('/hamster/api/config', 'config-container', renderConfig);
+    fetchData('/hamster/api/current', 'current-container', renderCurrent);
     fetchTokens();
 });
 
@@ -42,7 +42,7 @@ function renderCurrent(data, containerId) {
 }
 
 function fetchTokens() {
-    fetch('/api/tokens')
+    fetch('/hamster/api/tokens')
         .then(response => response.json())
         .then(tokens => {
             const tokenList = document.getElementById('tokenList');
@@ -54,7 +54,7 @@ function fetchTokens() {
 }
 
 function removeToken(token) {
-    fetch('/api/tokens', {
+    fetch('/hamster/api/tokens', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ function removeToken(token) {
 document.getElementById('addTokenForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const token = document.getElementById('newToken').value;
-    fetch('/api/tokens', {
+    fetch('/hamster/api/tokens', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
