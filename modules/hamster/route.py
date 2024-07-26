@@ -108,3 +108,8 @@ def get_graph_data():
             timestamps.append(record.get_time().strftime('%Y-%m-%d %H:%M:%S'))
             if record.get_field() == graph_type:
                 values.append(record.get_value())
+
+    return jsonify({
+        'timestamps': timestamps,
+        graph_type: values
+    })
