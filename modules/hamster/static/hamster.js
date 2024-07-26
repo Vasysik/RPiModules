@@ -51,17 +51,19 @@ function removeToken(token) {
     .then(() => loadTokens());
 }
 
-document.getElementById('add-token').addEventListener('click', function() {
-    const token = document.getElementById('new-token').value;
-    fetch('/hamster/api/tokens', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token: token })
-    })
-    .then(response => response.json())
-    .then(() => {
-        loadTokens();
-        document.getElementById('new-token').value = '';
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('add-token').addEventListener('click', function() {
+        const token = document.getElementById('new-token').value;
+        fetch('/hamster/api/tokens', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: token })
+        })
+        .then(response => response.json())
+        .then(() => {
+            loadTokens();
+            document.getElementById('new-token').value = '';
+        });
     });
 });
 
