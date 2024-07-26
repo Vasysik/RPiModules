@@ -1,9 +1,9 @@
 import pexpect
 import time, json, sys
 
-def update_status(status):
+def update_status(status, end_string=""):
     with open('status.json', 'w') as f:
-        json.dump({"status": status}, f)
+        json.dump({"status": status, "endString": end_string}, f)
 
 def read_config():
     with open('config.json', 'r') as f:
@@ -37,6 +37,8 @@ def run_script():
     while True:
         try:
             process.expect(pexpect.TIMEOUT, timeout=1)
+            last_line = process.before.decode('utf-8').splitlines()[-1]
+            update_status("running", last_line)
         except pexpect.TIMEOUT:
             continue
         except pexpect.EOF:
