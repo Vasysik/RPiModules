@@ -3,13 +3,14 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('/hamster/api/status')
         .then(response => response.json())
             .then(data => {
-                document.getElementById('status').textContent = data.status;
-                document.getElementById('endString').textContent = data.endString;
+                document.getElementById('current-status').textContent = data.status;
+                document.getElementById('end-string').textContent = data.endString;
             });
 
         fetch('/hamster/api/current')
             .then(response => response.json())
             .then(data => {
+                document.getElementById('earn-passive-hour').textContent = data.wasys.earnPassivePerHour;
                 document.getElementById('balance-coins').textContent = data.wasys.balanceCoins;
                 document.getElementById('balance-keys').textContent = data.wasys.balanceKeys;
                 document.getElementById('available-taps').textContent = data.wasys.availableTaps;
