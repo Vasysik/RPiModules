@@ -17,65 +17,76 @@
         <h1>Hamster Combat Mining Dashboard</h1>
 
         <div class="status-section">
-            <h2>Current Mining Status</h2>
+            <h2 class="section-title">Current Mining Status</h2>
             <div class="hamster-image-container">
-                <img src="{{ url_for('hamster.static', filename='hamster_icon.png') }}" id="hamster-image" alt="Hamster Icon">
+                <img src="{{ url_for('hamster.static', filename='hamster_icon.png') }}" alt="Hamster Icon" id="hamster-image">
             </div>
-            <p>Status: <span id="current-status">Loading...</span></p>
-            <p>End String: <span id="end-string">Loading...</span></p>
+            <div class="status-info">
+                <p><span class="status-label">Status:</span> <span id="current-status">Loading...</span></p>
+                <p><span class="status-label">End String:</span> <span id="end-string">Loading...</span></p>
+            </div>
         </div>
 
         <div class="user-stats-section">
-            <h2>User Statistics</h2>
-            <p>Earn Passive Per Hour: <span id="earn-passive-hour">Loading...</span></p>
-            <p>Balance Coins: <span id="balance-coins">Loading...</span></p>
-            <p>Balance Keys: <span id="balance-keys">Loading...</span></p>
-            <p>Available Taps: <span id="available-taps">Loading...</span></p>
-            <p>Earn Per Tap: <span id="earn-per-tap">Loading...</span></p>
-            <p>Level: <span id="user-level">Loading...</span></p>
+            <h2 class="section-title">User Statistics</h2>
+            <div class="stat-item">
+                <div class="stat-label">Earn Passive Per Hour</div>
+                <div class="stat-value" id="earn-passive-hour">Loading...</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Balance Coins</div>
+                <div class="stat-value" id="balance-coins">Loading...</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Balance Keys</div>
+                <div class="stat-value" id="balance-keys">Loading...</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Available Taps</div>
+                <div class="stat-value" id="available-taps">Loading...</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Earn Per Tap</div>
+                <div class="stat-value" id="earn-per-tap">Loading...</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Level</div>
+                <div class="stat-value" id="user-level">Loading...</div>
+            </div>
         </div>
 
-        <!-- <div class="config-section">
-            <h2>Configuration</h2>
-            <p>Auto Buy Upgrade: <span id="auto-buy-upgrade">Loading...</span></p>
-            <p>Auto Complete Cipher: <span id="auto-complete-cipher">Loading...</span></p>
-            <p>Auto Complete Combo: <span id="auto-complete-combo">Loading...</span></p>
-            <p>Auto Complete Mini Game: <span id="auto-complete-mini-game">Loading...</span></p>
-            <p>Auto Complete Tasks: <span id="auto-complete-tasks">Loading...</span></p>
-        </div> -->
-
         <div class="config-section">
-            <h2>Configuration</h2>
+            <h2 class="section-title">Configuration</h2>
             <div class="config-item">
-                <label for="auto-buy-upgrade">Auto Buy Upgrade</label>
+                <span class="config-label">Auto Buy Upgrade</span>
                 <label class="switch">
                     <input type="checkbox" id="auto-buy-upgrade">
                     <span class="slider round"></span>
                 </label>
             </div>
             <div class="config-item">
-                <label for="auto-complete-combo">Auto Complete Combo</label>
+                <span class="config-label">Auto Complete Combo</span>
                 <label class="switch">
                     <input type="checkbox" id="auto-complete-combo">
                     <span class="slider round"></span>
                 </label>
             </div>
             <div class="config-item">
-                <label for="auto-complete-cipher">Auto Complete Cipher</label>
+                <span class="config-label">Auto Complete Cipher</span>
                 <label class="switch">
                     <input type="checkbox" id="auto-complete-cipher">
                     <span class="slider round"></span>
                 </label>
             </div>
             <div class="config-item">
-                <label for="auto-complete-mini-game">Auto Complete Mini Game</label>
+                <span class="config-label">Auto Complete Mini Game</span>
                 <label class="switch">
                     <input type="checkbox" id="auto-complete-mini-game">
                     <span class="slider round"></span>
                 </label>
             </div>
             <div class="config-item">
-                <label for="auto-complete-tasks">Auto Complete Tasks</label>
+                <span class="config-label">Auto Complete Tasks</span>
                 <label class="switch">
                     <input type="checkbox" id="auto-complete-tasks">
                     <span class="slider round"></span>
