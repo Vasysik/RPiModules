@@ -26,7 +26,10 @@ function loadTokens() {
         .then(tokens => {
             const tokenList = document.getElementById('token-list');
             tokenList.innerHTML = tokens.map(token => 
-                `<div>${token}</div><button onclick="removeToken('${token}')">Remove</button>`
+                `<div>
+                    <span class="token-text" title="${token}">${token}</span>
+                    <button class="remove-token" onclick="removeToken('${token}')" title="Remove token">×</button>
+                 </div>`
             ).join('');
         });
 }
