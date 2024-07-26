@@ -18,18 +18,19 @@
 
         <div class="status-section">
             <h2 class="section-title">Current Mining Status</h2>
-            <div class="hamster-image-container">
-                <img src="{{ url_for('hamster.static', filename='hamster_icon.png') }}" alt="Hamster Icon" id="hamster-image">
-            </div>
-            <div class="status-info">
-                <div class="status-item">
-                    <span class="status-label">Status:</span>
-                    <span class="status-value" id="current-status">Loading...</span>
+            <div class="status-content">
+                <div class="hamster-image-container">
+                    <img src="{{ url_for('hamster.static', filename='hamster_icon.png') }}" alt="Hamster Icon" id="hamster-image">
                 </div>
-                <div class="status-item">
-                    <span class="status-label">End String:</span>
-                    <div class="console-style">
-                        <span id="end-string">Loading...</span><span class="blink">_</span>
+                <div class="status-info">
+                    <div class="status-item">
+                        <span class="status-label">Status</span>
+                        <span class="status-value" id="current-status">Waiting...</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="console-style">
+                            <span id="end-string">Loading...</span><span class="blink">_</span>
+                        </div>
                     </div>
                 </div>
             </div>

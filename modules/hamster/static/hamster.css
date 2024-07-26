@@ -120,67 +120,87 @@ button:hover {
 }
 
 
+.status-section {
+    background-color: var(--bg-primary);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
 .section-title {
     color: var(--accent-color);
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+    width: 100%;
 }
 
-.status-section {
+.status-content {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 .hamster-image-container {
-    margin-bottom: 20px;
+    flex: 0 0 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #hamster-image {
-    width: 120px;
+    width: 80%;
     height: auto;
     transition: transform 0.3s ease;
 }
 
-#hamster-image:hover {
-    transform: rotate(360deg);
+.hamster-image-container:hover #hamster-image {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .status-info {
-    width: 100%;
-    text-align: left;
+    flex: 1;
+    margin-left: 30px;
 }
 
 .status-item {
-    margin: 10px 0;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
+    margin-bottom: 20px;
 }
 
 .status-label {
     font-weight: bold;
     color: var(--accent-color);
-    margin-right: 10px;
-    min-width: 80px;
+    font-size: 18px;
+    margin-bottom: 5px;
+    display: block;
 }
 
 .status-value {
-    font-weight: normal;
+    font-size: 16px;
+    padding: 8px 15px;
+    background-color: var(--bg-secondary);
+    border-radius: 20px;
+    display: inline-block;
 }
 
 .console-style {
-    background-color: #0a0a0a;
+    background-color: #1e1e1e;
     color: #00ff00;
     font-family: 'Courier New', monospace;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 8px;
     width: 100%;
     overflow-x: auto;
     white-space: nowrap;
+    font-size: 16px;
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
 }
 
 .console-style::before {
