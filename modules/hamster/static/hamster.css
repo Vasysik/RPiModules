@@ -135,6 +135,12 @@ button:hover {
     align-items: center;
 }
 
+.user-stats-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .hamster-image-container {
     margin-bottom: 20px;
 }
@@ -146,7 +152,7 @@ button:hover {
 }
 
 #hamster-image:hover {
-    transform: rotate(10deg) scale(1.1);
+    transform: rotate(360deg);
 }
 
 .status-info {
