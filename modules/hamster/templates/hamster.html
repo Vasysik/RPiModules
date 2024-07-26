@@ -3,13 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamster</title>
+    <title>Hamster Combat</title>
+    <script src="{{ url_for('hamster.static', filename='hamster.js') }}"></script>
 </head>
 <body>
     {% extends "base_layout.html" %}
 
     {% block content %}
-    <h1>Hamster</h1>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Hamster Combat Mining Dashboard</h1>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">Current Mining Status</div>
+                    <div class="card-body" id="status-container">
+                        <!-- Status data will be inserted here -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">Configuration</div>
+                    <div class="card-body" id="config-container">
+                        <!-- Config data will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header">User Statistics</div>
+                    <div class="card-body" id="current-container">
+                        <!-- Current data will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header">Token Management</div>
+                    <div class="card-body">
+                        <h3>Current Tokens</h3>
+                        <ul id="tokenList">
+                            <!-- Token list will be inserted here -->
+                        </ul>
+                        <form id="addTokenForm">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="newToken" placeholder="Enter new token">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Add Token</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endblock %}
 </body>
 </html>

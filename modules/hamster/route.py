@@ -17,9 +17,8 @@ def index():
 
 @hamster.route('/api/current', methods=['GET'])
 def api_current():
-    if request.method == 'GET':
-        return jsonify(read_json(os.path.join(current_dir, 'current.json')))
-    
+    return jsonify(read_json(os.path.join(current_dir, 'current.json')))
+
 @hamster.route('/api/current/<user>/<element>', methods=['GET'])
 def api_current_user_element(user, element):
     data = read_json(os.path.join(current_dir, 'current.json'))
@@ -33,11 +32,37 @@ def api_current_user_element(user, element):
 
 @hamster.route('/api/status', methods=['GET'])
 def api_status():
-    if request.method == 'GET':
-        return jsonify(read_json(os.path.join(current_dir, 'status.json')))
+    return jsonify(read_json(os.path.join(current_dir, 'status.json')))
 
 @hamster.route('/api/config', methods=['GET'])
 def api_config():
-    if request.method == 'GET':
-        return jsonify(read_json(os.path.join(current_dir, 'config.json')))
+    return jsonify(read_json(os.path.join(current_dir, 'config.json')))
 
+@hamster.route('/api/tokens', methods=['GET', 'POST', 'DELETE'])
+def api_tokens():
+    tokens_file = os.path.join(current_dir, 'tokens.txt')
+    
+    if request.method == 'GET':
+        if os.path.exists(tokens_file):
+            with open(tokens_file, 'r') as f:
+                tokens = [line.strip() for line in f.readlines()]
+            return jsonify(tokens)
+        return jsonify([])
+    
+    elif request.method == 'POST':
+        token = request.json.get('token')
+        if token:
+            with open(tokens_file, 'a') as f:
+                f.write(f"{token}\n")
+            return jsonify({"message": "Token added successfully"}), 201
+        return jsonify({"error": "Invalid token"}), 400
+    
+    elif request.method == 'DELETE':
+        token = request.json.get('token')
+        if token:
+            with open(tokens_file, 'r') as f:
+                tokens = f.readlines()
+            with open(tokens_file, 'w') as f:
+                f.writelines([line for line in tokens if line.strip() != token])
+            return jsonify({"message": "Token removed successfully"}), 200
+        return jsonify({"error": "Invalid token"}), 400
