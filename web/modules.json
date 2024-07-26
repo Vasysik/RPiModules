@@ -11,5 +11,11 @@
         "icon": "test/static/test_icon.png",
         "name": "Test",
         "enable": true
+    },
+    "hamster": {
+        "route": "hamster",
+        "icon": "hamster/static/hamster_icon.png",
+        "name": "hamster",
+        "enable": true
     }
 }
