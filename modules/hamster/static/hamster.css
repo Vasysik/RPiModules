@@ -2,16 +2,29 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #2b2b2b;
-    color: #e0e0e0;
-    font-family: Arial, sans-serif;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 .status-section, .user-stats-section, .config-section, .token-section {
-    background-color: #3a3a3a;
-    border-radius: 5px;
-    padding: 15px;
+    background-color: var(--bg-primary);
+    padding: 20px;
+    border-radius: 12px;
     margin-bottom: 20px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.status-section h2, .user-stats-section h2, .config-section h2, .token-section h2 {
+    margin-bottom: 10px;
+    color: var(--accent-color);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.hamster-image-container {
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .hamster-image-container {
@@ -21,5 +34,55 @@
 
 #hamster-image {
     width: 100px;
-    height: 100px;
+    height: auto;
+    transition: transform 0.3s linear;
+}
+
+#hamster-image:hover {
+    transform: rotate(360deg);
+}
+
+span {
+    font-weight: bold;
+}
+
+.token-input {
+    margin-top: 10px;
+}
+
+input[type="text"], button {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+    padding: 8px;
+    width: 100%;
+    max-width: 200px;
+}
+
+button {
+    background-color: var(--accent-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3a7bc8;
+}
+
+#token-list {
+    margin-top: 10px;
+}
+
+#token-list div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#token-list button {
+    max-width: 100px;
 }
