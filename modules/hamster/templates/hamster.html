@@ -46,27 +46,42 @@
 
         <div class="config-section">
             <h2>Configuration</h2>
-            <p>Auto Buy Upgrade: <select id="auto-buy-upgrade">
-                <option value="ON">ON</option>
-                <option value="OFF">OFF</option>
-            </select></p>
-            <p>Auto Complete Combo: <select id="auto-complete-combo">
-                <option value="ON">ON</option>
-                <option value="OFF">OFF</option>
-            </select></p>
-            <p>Auto Complete Cipher: <select id="auto-complete-cipher">
-                <option value="ON">ON</option>
-                <option value="OFF">OFF</option>
-            </select></p>
-            <p>Auto Complete Mini Game: <select id="auto-complete-mini-game">
-                <option value="ON">ON</option>
-                <option value="OFF">OFF</option>
-            </select></p>
-            <p>Auto Complete Tasks: <select id="auto-complete-tasks">
-                <option value="ON">ON</option>
-                <option value="OFF">OFF</option>
-            </select></p>
-            <button onclick="saveConfig()">Save Configuration</button>
+            <div class="config-item">
+                <label for="auto-buy-upgrade">Auto Buy Upgrade</label>
+                <label class="switch">
+                    <input type="checkbox" id="auto-buy-upgrade">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="config-item">
+                <label for="auto-complete-combo">Auto Complete Combo</label>
+                <label class="switch">
+                    <input type="checkbox" id="auto-complete-combo">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="config-item">
+                <label for="auto-complete-cipher">Auto Complete Cipher</label>
+                <label class="switch">
+                    <input type="checkbox" id="auto-complete-cipher">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="config-item">
+                <label for="auto-complete-mini-game">Auto Complete Mini Game</label>
+                <label class="switch">
+                    <input type="checkbox" id="auto-complete-mini-game">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="config-item">
+                <label for="auto-complete-tasks">Auto Complete Tasks</label>
+                <label class="switch">
+                    <input type="checkbox" id="auto-complete-tasks">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <button id="save-config" class="save-button">Save Configuration</button>
         </div>
 
         <div class="token-section">
