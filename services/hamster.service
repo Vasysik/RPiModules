@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 WorkingDirectory= /opt/RPiModules/modules/hamster/
-ExecStart=python3 /opt/RPiModules/modules/hamster/hamster.py
+ExecStart=python3 /opt/RPiModules/modules/hamster/hamsterkombat/main.py
 Restart=always
 RestartSec=10
 User=vasys
