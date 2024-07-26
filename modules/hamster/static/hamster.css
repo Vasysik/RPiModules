@@ -1,0 +1,25 @@
+.hamster-combat-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2b2b2b;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+}
+
+.status-section, .user-stats-section, .config-section, .token-section {
+    background-color: #3a3a3a;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.hamster-image-container {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#hamster-image {
+    width: 100px;
+    height: 100px;
+}
