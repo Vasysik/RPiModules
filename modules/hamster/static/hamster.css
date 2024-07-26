@@ -135,12 +135,6 @@ button:hover {
     align-items: center;
 }
 
-.user-stats-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .hamster-image-container {
     margin-bottom: 20px;
 }
@@ -170,9 +164,15 @@ button:hover {
 }
 
 .user-stats-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
+    margin-top: 20px;
 }
 
 .stat-item {
