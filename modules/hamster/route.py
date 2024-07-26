@@ -15,9 +15,9 @@ def read_json(file_path):
 def index():
     return render_template('hamster.html')
 
-@hamster.route('/api/current', methods=['GET', 'POST'])
+@hamster.route('/api/current', methods=['GET'])
 def api_settings():
     if request.method == 'GET':
         global settings
-        settings = read_json(os.path.join(current_dir, 'hamsterkombat/current.json'))
+        settings = read_json(os.path.join(current_dir, 'current.json'))
         return jsonify(settings)
