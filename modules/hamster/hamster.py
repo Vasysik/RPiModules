@@ -28,9 +28,9 @@ def run_script():
         inputs.append(2)
     if config["Auto Complete Cipher"] == "ON":
         inputs.append(3)
-    if config["Auto Complete Mini Game"] == "OFF":
+    if config["Auto Complete Mini Game"] == "ON":
         inputs.append(4)
-    if config["Auto Complete Tasks"] == "OFF":
+    if config["Auto Complete Tasks"] == "ON":
         inputs.append(5)
     
     inputs.append(6)
