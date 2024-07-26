@@ -37,7 +37,7 @@ def run_script():
     while True:
         try:
             process.expect(pexpect.TIMEOUT, timeout=1)
-            last_line = process.before.decode('utf-8').splitlines()[-1]
+            last_line = process.before.splitlines()[-1]
             update_status("running", last_line)
         except pexpect.TIMEOUT:
             continue
