@@ -18,15 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 moduleName.textContent = module.name;
                 moduleButton.appendChild(moduleName);
 
-                moduleButton.addEventListener('click', function() {
-                    const buttons = document.querySelectorAll('.module-button');
-                    buttons.forEach(button => button.classList.remove('active'));
-
-                    this.classList.add('active');
-                    localStorage.setItem('selectedModule', module.route);
-                });
-
-                if (localStorage.getItem('selectedModule') === module.route) {
+                if (window.location.pathname === `/${module.route}`) {
                     moduleButton.classList.add('active');
                 }
 

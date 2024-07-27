@@ -29,6 +29,7 @@ function loadData() {
             }
 
             loadUserData(selectedUser);
+            updateGraph();
         });
 
     loadTokens();
