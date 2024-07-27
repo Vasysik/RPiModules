@@ -226,6 +226,8 @@ button:hover {
 
     .hamster-image-container {
         margin-bottom: 20px;
+        width: 120px;  /* Фиксированная ширина */
+        height: 120px; /* Фиксированная высота */
     }
 
     .status-info {
@@ -235,8 +237,20 @@ button:hover {
 
     .console-style {
         font-size: 14px;
-        white-space: pre-wrap;
-        word-wrap: break-word;
+        white-space: nowrap;
+        overflow-x: auto;
+        padding: 10px;
+        height: auto;
+        max-height: 60px; /* Ограничиваем максимальную высоту */
+    }
+
+    .status-item {
+        margin-bottom: 10px;
+    }
+
+    .status-label, .status-value {
+        display: inline-block;
+        margin-right: 10px;
     }
 }
 
