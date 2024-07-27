@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify
+from datetime import datetime, timezone
 import os, json
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -123,7 +124,7 @@ def get_graph_data():
 
     for table in result:
         for record in table.records:
-            timestamps.append(record.get_time().strftime('%Y-%m-%d %H:%M:%S'))
+            timestamps.append(record.get_time().astimezone().strftime('%Y-%m-%d %H:%M:%S'))
             if record.get_field() == graph_type:
                 values.append(record.get_value())
 
