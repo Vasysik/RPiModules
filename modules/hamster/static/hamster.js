@@ -26,16 +26,18 @@ function loadData() {
             });
         });
 
-    fetch(`/hamster/api/current/${selectedUser}`)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('earn-passive-hour').textContent = data.earnPassivePerHour;
-            document.getElementById('balance-coins').textContent = data.balanceCoins;
-            document.getElementById('balance-keys').textContent = data.balanceKeys;
-            document.getElementById('available-taps').textContent = data.availableTaps;
-            document.getElementById('earn-per-tap').textContent = data.earnPerTap;
-            document.getElementById('user-level').textContent = data.level;
-        });
+    if (selectedUser) {
+        fetch(`/hamster/api/current/${selectedUser}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('earn-passive-hour').textContent = data.earnPassivePerHour;
+                document.getElementById('balance-coins').textContent = data.balanceCoins;
+                document.getElementById('balance-keys').textContent = data.balanceKeys;
+                document.getElementById('available-taps').textContent = data.availableTaps;
+                document.getElementById('earn-per-tap').textContent = data.earnPerTap;
+                document.getElementById('user-level').textContent = data.level;
+            });
+    }
 
     loadTokens();
 }

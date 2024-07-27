@@ -95,7 +95,7 @@ def get_graph_data():
     graph_type = request.args.get('type', 'earnPassivePerHour')
     time_range = int(request.args.get('range', 86400))  # Default to 1 day
     user = request.args.get('user')
-    
+
     # Определяем интервал агрегации в зависимости от временного диапазона
     if time_range <= 86400:  # 1 день или меньше
         interval = '1h'
@@ -111,7 +111,7 @@ def get_graph_data():
     |> range(start: -{time_range}s)
     |> filter(fn: (r) => r._measurement == "measurement")
     |> filter(fn: (r) => r._field == "{graph_type}")
-    |> filter(fn: (r) => r.user == "{user}")
+    |> filter(fn: (r) => r.username == "{user}")
     |> aggregateWindow(every: {interval}, fn: mean, createEmpty: false)
     |> yield(name: "mean")
     """
