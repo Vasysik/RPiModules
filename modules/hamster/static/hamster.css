@@ -137,6 +137,27 @@ button:hover {
     width: 100%;
 }
 
+.user-stats-section .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-stats-section .section-title {
+    margin-bottom: 0;
+}
+
+#user-select {
+    max-width: 200px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
 .status-content {
     display: flex;
     align-items: center;

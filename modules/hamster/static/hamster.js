@@ -47,13 +47,28 @@ function loadTokens() {
         .then(response => response.json())
         .then(tokens => {
             const tokenList = document.getElementById('token-list');
-            tokenList.innerHTML = tokens.map(token => 
-                `<div>
-                    <span class="token-text" title="${token}">${token}</span>
-                    <button class="remove-token" onclick="removeToken('${token}')" title="Remove token">×</button>
-                 </div>`
-            ).join('');
+            tokenList.innerHTML = tokens.map(token => {
+                const username = extractUsername(token);
+                return `
+                    <div class="token-item">
+                        <span class="token-username">${username}</span>
+                        <span class="token-text" title="${token}">${token}</span>
+                        <button class="remove-token" onclick="removeToken('${token}')" title="Remove token">×</button>
+                    </div>
+                `;
+            }).join('');
         });
+}
+
+function extractUsername(token) {
+    try {
+        const userDataStr = decodeURIComponent(token.split('user=')[1].split('&')[0]);
+        const userData = JSON.parse(userDataStr);
+        return userData.first_name || userData.username || 'Unknown';
+    } catch (error) {
+        console.error('Error extracting username:', error);
+        return 'Unknown';
+    }
 }
 
 function removeToken(token) {

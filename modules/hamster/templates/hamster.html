@@ -37,12 +37,9 @@
         </div>
 
         <div class="user-stats-section">
-            <h2 class="section-title">User Statistics</h2>
-            <div class="user-selection">
-                <label for="user-select">Select User:</label>
-                <select id="user-select" onchange="loadData()">
-                    <!-- Users will be dynamically added here -->
-                </select>
+            <div class="section-header">
+                <h2 id="user-statistics" class="section-title">User Statistics</h2>
+                <select id="user-select" onchange="loadData()"></select>
             </div>
             <div class="stats-grid">
                 <div class="stat-item">
@@ -70,6 +67,22 @@
                     <div class="stat-value" id="user-level">Loading...</div>
                 </div>
             </div>
+        </div>
+
+        <div class="graph-section">
+            <h2>Graph</h2>
+            <select id="graph-type" onchange="updateGraph()">
+                <option value="earnPassivePerHour">Earn Passive Per Hour</option>
+                <option value="balanceCoins">Balance Coins</option>
+            </select>
+            <select id="time-range" onchange="updateGraph()">
+                <option value="86400">1 day</option>
+                <option value="604800">7 day</option>
+                <option value="2592000">1 month</option>
+                <option value="7776000">3 month</option>
+                <option value="31104000">1 year</option>
+            </select>
+            <div class="graph" id="graph"></div>
         </div>
 
         <div class="config-section">
@@ -121,22 +134,6 @@
                 <input type="text" id="new-token" placeholder="Enter new token">
                 <button id="add-token">Add Token</button>
             </div>
-        </div>
-
-        <div class="graph-section">
-            <h2>Graph</h2>
-            <select id="graph-type" onchange="updateGraph()">
-                <option value="earnPassivePerHour">Earn Passive Per Hour</option>
-                <option value="balanceCoins">Balance Coins</option>
-            </select>
-            <select id="time-range" onchange="updateGraph()">
-                <option value="86400">1 day</option>
-                <option value="604800">7 day</option>
-                <option value="2592000">1 month</option>
-                <option value="7776000">3 month</option>
-                <option value="31104000">1 year</option>
-            </select>
-            <div class="graph" id="graph"></div>
         </div>
     </div>
 
