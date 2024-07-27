@@ -1,3 +1,4 @@
+let selectedUser = null;
 function loadData() {
     fetch('/hamster/api/status')
     .then(response => response.json())
@@ -17,9 +18,9 @@ function loadData() {
                 option.text = user;
                 userSelect.appendChild(option);
             });
+            if (selectedUser) { userSelect.value = selectedUser; } else { selectedUser = userSelect.value; }
         });
 
-    const selectedUser = document.getElementById('user-select').value;
     fetch(`/hamster/api/current/${selectedUser}`)
         .then(response => response.json())
         .then(data => {
@@ -57,22 +58,6 @@ function removeToken(token) {
     .then(response => response.json())
     .then(() => loadTokens());
 }
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById('add-token').addEventListener('click', function() {
-        const token = document.getElementById('new-token').value;
-        fetch('/hamster/api/tokens', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: token })
-        })
-        .then(response => response.json())
-        .then(() => {
-            loadTokens();
-            document.getElementById('new-token').value = '';
-        });
-    });
-});
 
 function loadConfig() {
     fetch('/hamster/api/config')
@@ -114,13 +99,12 @@ function saveConfig() {
     .catch(error => console.error('Error:', error));
 }
 
-
-
 function updateGraph() {
     const graphType = document.getElementById('graph-type').value;
     const timeRange = document.getElementById('time-range').value;
+    const selectedUser = document.getElementById('user-select').value;
 
-    fetch(`/hamster/api/graph_data?type=${graphType}&range=${timeRange}`)
+    fetch(`/hamster/api/graph_data?type=${graphType}&range=${timeRange}&user=${selectedUser}`)
         .then(response => response.json())
         .then(data => {
             const trace = {
@@ -183,10 +167,27 @@ setInterval(updateGraph, 1000);
 
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('save-config').addEventListener('click', saveConfig);
+    document.getElementById('add-token').addEventListener('click', function() {
+        const token = document.getElementById('new-token').value;
+        fetch('/hamster/api/tokens', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: token })
+        })
+        .then(response => response.json())
+        .then(() => {
+            loadTokens();
+            document.getElementById('new-token').value = '';
+        });
+    });
 });
 
 window.onload = function() {
-    loadData();
     loadConfig();
-    updateGraph();
 };
+
+document.getElementById('user-select').addEventListener('change', function() {
+    selectedUser = this.value;
+    loadData();
+    updateGraph();
+});

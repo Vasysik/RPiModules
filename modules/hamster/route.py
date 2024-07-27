@@ -26,15 +26,15 @@ query_api = client.query_api()
 def index():
     return render_template('hamster.html')
 
-@hamster.route('/api/current', methods=['GET'])
-def api_current():
-    return jsonify(read_json(os.path.join(current_dir, 'current.json')))
-
 @hamster.route('/api/users', methods=['GET'])
 def api_users():
     data = read_json(os.path.join(current_dir, 'current.json'))
     users = list(data.keys())
     return jsonify({"users": users})
+
+@hamster.route('/api/current', methods=['GET'])
+def api_current():
+    return jsonify(read_json(os.path.join(current_dir, 'current.json')))
 
 @hamster.route('/api/current/<user>', methods=['GET'])
 def api_current_user(user):
@@ -45,17 +45,6 @@ def api_current_user(user):
         return jsonify({"error": "User not found"}), 404
 
     return jsonify(user_data)
-
-@hamster.route('/api/current/<user>/<element>', methods=['GET'])
-def api_current_user_element(user, element):
-    data = read_json(os.path.join(current_dir, 'current.json'))
-    user_data = data.get(user, {})
-    element_value = user_data.get(element, None)
-
-    if element_value is None:
-        return jsonify({"error": "Element not found"}), 404
-
-    return jsonify({element: element_value})
 
 @hamster.route('/api/status', methods=['GET'])
 def api_status():
@@ -104,8 +93,9 @@ def api_tokens():
 @hamster.route('/api/graph_data')
 def get_graph_data():
     graph_type = request.args.get('type', 'earnPassivePerHour')
-    time_range = int(request.args.get('range', 86400))  # Default to 1 minute
-
+    time_range = int(request.args.get('range', 86400))  # Default to 1 day
+    user = request.args.get('user')
+    
     # Определяем интервал агрегации в зависимости от временного диапазона
     if time_range <= 86400:  # 1 день или меньше
         interval = '1h'
@@ -121,6 +111,7 @@ def get_graph_data():
     |> range(start: -{time_range}s)
     |> filter(fn: (r) => r._measurement == "measurement")
     |> filter(fn: (r) => r._field == "{graph_type}")
+    |> filter(fn: (r) => r.user == "{user}")
     |> aggregateWindow(every: {interval}, fn: mean, createEmpty: false)
     |> yield(name: "mean")
     """
