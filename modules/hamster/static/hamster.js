@@ -19,6 +19,11 @@ function loadData() {
                 userSelect.appendChild(option);
             });
             if (selectedUser) { userSelect.value = selectedUser; } else { selectedUser = userSelect.value; }
+            document.getElementById('user-select').addEventListener('change', function() {
+                selectedUser = this.value;
+                loadData();
+                updateGraph();
+            });
         });
 
     fetch(`/hamster/api/current/${selectedUser}`)
@@ -185,9 +190,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
 window.onload = function() {
     loadConfig();
 };
-
-document.getElementById('user-select').addEventListener('change', function() {
-    selectedUser = this.value;
-    loadData();
-    updateGraph();
-});
