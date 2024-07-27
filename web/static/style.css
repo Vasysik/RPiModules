@@ -137,6 +137,10 @@ input[type="text"], select {
     color: var(--text-primary);
 }
 
+.module-button.active {
+    background-color: var(--hover-color);
+}
+
 input[type="text"]:focus, select:focus {
     outline: none;
     border-color: var(--accent-color);

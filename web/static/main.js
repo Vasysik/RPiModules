@@ -18,6 +18,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 moduleName.textContent = module.name;
                 moduleButton.appendChild(moduleName);
 
+                moduleButton.addEventListener('click', function() {
+                    const buttons = document.querySelectorAll('.module-button');
+                    buttons.forEach(button => button.classList.remove('active'));
+
+                    this.classList.add('active');
+                });
+
                 moduleGrid.appendChild(moduleButton);
             });
         })
