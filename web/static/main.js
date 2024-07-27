@@ -23,7 +23,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     buttons.forEach(button => button.classList.remove('active'));
 
                     this.classList.add('active');
+                    localStorage.setItem('selectedModule', module.route);
                 });
+
+                if (localStorage.getItem('selectedModule') === module.route) {
+                    moduleButton.classList.add('active');
+                }
 
                 moduleGrid.appendChild(moduleButton);
             });

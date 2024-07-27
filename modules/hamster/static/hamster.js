@@ -11,6 +11,7 @@ function loadData() {
         .then(response => response.json())
         .then(data => {
             const userSelect = document.getElementById('user-select');
+            const currentSelectedUser = userSelect.value;
             userSelect.innerHTML = '';
             data.users.forEach(user => {
                 const option = document.createElement('option');
@@ -18,16 +19,24 @@ function loadData() {
                 option.text = user;
                 userSelect.appendChild(option);
             });
-            if (selectedUser) { userSelect.value = selectedUser; } else { selectedUser = userSelect.value; }
-            document.getElementById('user-select').addEventListener('change', function() {
-                selectedUser = this.value;
-                loadData();
-                updateGraph();
-            });
+
+            if (currentSelectedUser && data.users.includes(currentSelectedUser)) {
+                userSelect.value = currentSelectedUser;
+                selectedUser = currentSelectedUser;
+            } else if (data.users.length > 0) {
+                selectedUser = data.users[0];
+                userSelect.value = selectedUser;
+            }
+
+            loadUserData(selectedUser);
         });
 
-    if (selectedUser) {
-        fetch(`/hamster/api/current/${selectedUser}`)
+    loadTokens();
+}
+
+function loadUserData(user) {
+    if (user) {
+        fetch(`/hamster/api/current/${user}`)
             .then(response => response.json())
             .then(data => {
                 document.getElementById('earn-passive-hour').textContent = parseInt(data.earnPassivePerHour).toLocaleString();
@@ -37,9 +46,13 @@ function loadData() {
                 document.getElementById('user-level').textContent = parseInt(data.level).toLocaleString();
             });
     }
-
-    loadTokens();
 }
+
+document.getElementById('user-select').addEventListener('change', function() {
+    selectedUser = this.value;
+    loadUserData(selectedUser);
+    updateGraph();
+});
 
 function loadTokens() {
     fetch('/hamster/api/tokens')
@@ -184,7 +197,7 @@ if (window.matchMedia) {
 }
 
 setInterval(loadData, 1000);
-setInterval(updateGraph, 1000);
+setInterval(updateGraph, 30000);
 
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('save-config').addEventListener('click', saveConfig);
