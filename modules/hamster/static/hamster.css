@@ -101,14 +101,6 @@ button:hover {
     margin-bottom: 15px;
 }
 
-
-.status-section {
-    background-color: var(--bg-primary);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px var(--shadow-color);
-}
-
 #user-select {
     max-width: 200px;
     padding: 8px;
@@ -431,4 +423,14 @@ input:checked + .slider:before {
     border-bottom: 2px solid var(--accent-color);
     padding-bottom: 15px;
     margin-bottom: 20px;
+}
+
+.section-title {
+    color: var(--accent-color);
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 15px;
+    width: 100%;
 }
