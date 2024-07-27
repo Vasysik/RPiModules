@@ -48,12 +48,6 @@ function loadUserData(user) {
     }
 }
 
-document.getElementById('user-select').addEventListener('change', function() {
-    selectedUser = this.value;
-    loadUserData(selectedUser);
-    updateGraph();
-});
-
 function loadTokens() {
     fetch('/hamster/api/tokens')
         .then(response => response.json())
@@ -213,6 +207,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             loadTokens();
             document.getElementById('new-token').value = '';
         });
+    });
+    document.getElementById('user-select').addEventListener('change', function() {
+        selectedUser = this.value;
+        loadUserData(selectedUser);
+        updateGraph();
     });
 });
 
