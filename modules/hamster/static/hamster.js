@@ -51,8 +51,8 @@ function loadTokens() {
                 const username = extractUsername(token);
                 return `
                     <div class="token-item">
-                        <span class="token-username">${username}</span>
-                        <span class="token-text" title="${token}">${token}</span>
+                        <div class="token-username">${username}</div>
+                        <div class="token-text" title="${token}">${token}</div>
                         <button class="remove-token" onclick="removeToken('${token}')" title="Remove token">×</button>
                     </div>
                 `;
