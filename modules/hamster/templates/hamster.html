@@ -37,11 +37,12 @@
         </div>
 
         <div class="user-stats-section">
-            <div class="section-header">
-                <h2 id="user-statistics" class="section-title">User Statistics</h2>
-                <select id="user-select" onchange="loadData()"></select>
-            </div>
+            <h2 id="user-statistics" class="section-title">User Statistics</h2>
             <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-label">Earn Passive Per Hour</div>
+                    <select id="user-select" onchange="loadData()"></select>
+                </div>
                 <div class="stat-item">
                     <div class="stat-label">Earn Passive Per Hour</div>
                     <div class="stat-value" id="earn-passive-hour">Loading...</div>
@@ -55,10 +56,6 @@
                     <div class="stat-value" id="balance-keys">Loading...</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-label">Available Taps</div>
-                    <div class="stat-value" id="available-taps">Loading...</div>
-                </div>
-                <div class="stat-item">
                     <div class="stat-label">Earn Per Tap</div>
                     <div class="stat-value" id="earn-per-tap">Loading...</div>
                 </div>
@@ -70,7 +67,7 @@
         </div>
 
         <div class="graph-section">
-            <h2>Graph</h2>
+            <h2 id="graph" class="section-title">Graph</h2>
             <select id="graph-type" onchange="updateGraph()">
                 <option value="earnPassivePerHour">Earn Passive Per Hour</option>
                 <option value="balanceCoins">Balance Coins</option>
