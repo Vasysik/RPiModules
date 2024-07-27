@@ -156,13 +156,13 @@ button:hover {
 }
 
 #hamster-image {
-    width: 80%;
+    width: 100%;
     height: auto;
     transition: transform 0.3s ease;
 }
 
 .hamster-image-container:hover #hamster-image {
-    transform: scale(1.1) rotate(5deg);
+    transform: rotate(360deg);
 }
 
 .status-info {
@@ -215,6 +215,30 @@ button:hover {
 @keyframes blink-animation {
     to {
         visibility: hidden;
+    }
+}
+
+@media (min-width: 768px) {
+    .status-section {
+        padding: 30px;
+    }
+
+    .status-content {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .hamster-image-container {
+        margin-bottom: 0;
+        margin-right: 30px;
+    }
+
+    .status-info {
+        flex: 1;
+    }
+
+    .console-style {
+        font-size: 16px;
     }
 }
 
