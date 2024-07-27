@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 moduleName.textContent = module.name;
                 moduleButton.appendChild(moduleName);
 
-                if (window.location.pathname.substring(1) === module.route) {
+                console.log(window.location.pathname)
+                if (window.location.pathname === `/${module.route}`) {
                     moduleButton.classList.add('active');
                 }
 
