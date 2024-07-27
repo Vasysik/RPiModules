@@ -232,8 +232,13 @@ button:hover {
 }
 
 .stat-value {
-    font-size: 20px;
+    font-size: 16px;
     margin: 8px 0;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 8px;
 }
 
 .config-section {
