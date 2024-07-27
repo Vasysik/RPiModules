@@ -170,10 +170,6 @@ button:hover {
     margin-left: 30px;
 }
 
-.status-item {
-    margin-bottom: 20px;
-}
-
 .status-label {
     font-weight: bold;
     color: var(--accent-color);
@@ -188,6 +184,15 @@ button:hover {
     background-color: var(--bg-secondary);
     border-radius: 20px;
     display: inline-block;
+}
+
+.status-item {
+    margin-bottom: 10px;
+}
+
+.status-label, .status-value {
+    display: inline-block;
+    margin-right: 10px;
 }
 
 .console-style {
@@ -226,8 +231,8 @@ button:hover {
 
     .hamster-image-container {
         margin-bottom: 20px;
-        width: 120px;  /* Фиксированная ширина */
-        height: 120px; /* Фиксированная высота */
+        width: 120px; 
+        height: 120px; 
     }
 
     .status-info {
@@ -241,16 +246,7 @@ button:hover {
         overflow-x: auto;
         padding: 10px;
         height: auto;
-        max-height: 60px; /* Ограничиваем максимальную высоту */
-    }
-
-    .status-item {
-        margin-bottom: 10px;
-    }
-
-    .status-label, .status-value {
-        display: inline-block;
-        margin-right: 10px;
+        max-height: 60px; 
     }
 }
 
