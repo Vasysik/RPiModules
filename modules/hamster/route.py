@@ -30,6 +30,22 @@ def index():
 def api_current():
     return jsonify(read_json(os.path.join(current_dir, 'current.json')))
 
+@hamster.route('/api/users', methods=['GET'])
+def api_users():
+    data = read_json(os.path.join(current_dir, 'current.json'))
+    users = list(data.keys())
+    return jsonify({"users": users})
+
+@hamster.route('/api/current/<user>', methods=['GET'])
+def api_current_user(user):
+    data = read_json(os.path.join(current_dir, 'current.json'))
+    user_data = data.get(user, {})
+
+    if not user_data:
+        return jsonify({"error": "User not found"}), 404
+
+    return jsonify(user_data)
+
 @hamster.route('/api/current/<user>/<element>', methods=['GET'])
 def api_current_user_element(user, element):
     data = read_json(os.path.join(current_dir, 'current.json'))

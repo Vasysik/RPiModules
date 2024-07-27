@@ -38,6 +38,12 @@
 
         <div class="user-stats-section">
             <h2 class="section-title">User Statistics</h2>
+            <div class="user-selection">
+                <label for="user-select">Select User:</label>
+                <select id="user-select" onchange="loadData()">
+                    <!-- Users will be dynamically added here -->
+                </select>
+            </div>
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-label">Earn Passive Per Hour</div>

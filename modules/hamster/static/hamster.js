@@ -6,15 +6,29 @@ function loadData() {
             document.getElementById('end-string').textContent = data.endString;
         });
 
-    fetch('/hamster/api/current')
+    fetch('/hamster/api/users')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('earn-passive-hour').textContent = data.wasys.earnPassivePerHour;
-            document.getElementById('balance-coins').textContent = data.wasys.balanceCoins;
-            document.getElementById('balance-keys').textContent = data.wasys.balanceKeys;
-            document.getElementById('available-taps').textContent = data.wasys.availableTaps;
-            document.getElementById('earn-per-tap').textContent = data.wasys.earnPerTap;
-            document.getElementById('user-level').textContent = data.wasys.level;
+            const userSelect = document.getElementById('user-select');
+            userSelect.innerHTML = '';
+            data.users.forEach(user => {
+                const option = document.createElement('option');
+                option.value = user;
+                option.text = user;
+                userSelect.appendChild(option);
+            });
+        });
+
+    const selectedUser = document.getElementById('user-select').value;
+    fetch(`/hamster/api/current/${selectedUser}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('earn-passive-hour').textContent = data.earnPassivePerHour;
+            document.getElementById('balance-coins').textContent = data.balanceCoins;
+            document.getElementById('balance-keys').textContent = data.balanceKeys;
+            document.getElementById('available-taps').textContent = data.availableTaps;
+            document.getElementById('earn-per-tap').textContent = data.earnPerTap;
+            document.getElementById('user-level').textContent = data.level;
         });
 
     loadTokens();
