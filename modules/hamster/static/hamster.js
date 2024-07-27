@@ -31,7 +31,7 @@ function loadData() {
             .then(response => response.json())
             .then(data => {
                 document.getElementById('earn-passive-hour').textContent = data.earnPassivePerHour;
-                document.getElementById('balance-coins').textContent = data.balanceCoins;
+                document.getElementById('balance-coins').textContent = parseInt(data.balanceCoins);
                 document.getElementById('balance-keys').textContent = data.balanceKeys;
                 document.getElementById('earn-per-tap').textContent = data.earnPerTap;
                 document.getElementById('user-level').textContent = data.level;
