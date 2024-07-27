@@ -33,10 +33,6 @@ def api_users():
     users = list(data.keys())
     return jsonify({"users": users})
 
-@hamster.route('/api/current', methods=['GET'])
-def api_current():
-    return jsonify(read_json(os.path.join(current_dir, 'current.json')))
-
 @hamster.route('/api/current/<user>', methods=['GET'])
 def api_current_user(user):
     data = read_json(os.path.join(current_dir, 'current.json'))

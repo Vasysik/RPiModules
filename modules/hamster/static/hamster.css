@@ -86,7 +86,6 @@ button:hover {
 
 .user-select {
     max-width: 200px;
-    padding: 8px;
     border-radius: 4px;
     border: 1px solid var(--border-color);
     background-color: var(--bg-primary);

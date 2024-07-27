@@ -61,7 +61,7 @@ function loadTokens() {
 
 function extractUsername(token) {
     try {
-        const userDataStr = decodeURIComponent(token.split('user=')[1].split('&')[0]);
+        const userDataStr = decodeURIComponent(token.split('user=')[2].split('&')[0]);
         const userData = JSON.parse(userDataStr);
         return userData.first_name || userData.username || 'Unknown';
     } catch (error) {
