@@ -30,11 +30,11 @@ function loadData() {
         fetch(`/hamster/api/current/${selectedUser}`)
             .then(response => response.json())
             .then(data => {
-                document.getElementById('earn-passive-hour').textContent = Number.prototype.toLocaleString(data.earnPassivePerHour);
-                document.getElementById('balance-coins').textContent = Number.prototype.toLocaleString(parseInt(data.balanceCoins));
-                document.getElementById('balance-keys').textContent = Number.prototype.toLocaleString(data.balanceKeys);
-                document.getElementById('earn-per-tap').textContent = Number.prototype.toLocaleString(data.earnPerTap);
-                document.getElementById('user-level').textContent = Number.prototype.toLocaleString(data.level);
+                document.getElementById('earn-passive-hour').textContent = parseInt(data.earnPassivePerHour).toLocaleString();
+                document.getElementById('balance-coins').textContent = parseInt(data.balanceCoins).toLocaleString();
+                document.getElementById('balance-keys').textContent = parseInt(data.balanceKeys).toLocaleString();
+                document.getElementById('earn-per-tap').textContent = parseInt(data.earnPerTap).toLocaleString();
+                document.getElementById('user-level').textContent = parseInt(data.level).toLocaleString();
             });
     }
 
@@ -61,9 +61,9 @@ function loadTokens() {
 
 function extractUsername(token) {
     try {
-        const userDataStr = decodeURIComponent(token.split('user=')[2].split('&')[0]);
+        const userDataStr = decodeURIComponent(token.split('user=')[1].split('&')[0]);
         const userData = JSON.parse(userDataStr);
-        return userData.first_name || userData.username || 'Unknown';
+        return userData.username || 'Unknown';
     } catch (error) {
         console.error('Error extracting username:', error);
         return 'Unknown';
