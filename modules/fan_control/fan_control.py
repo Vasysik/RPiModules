@@ -42,7 +42,7 @@ try:
 
     tachPin = 12
     pulse_count = 0
-    rpm = 0
+    rpm = float(0)
     
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(controlPin, GPIO.OUT, initial=0)
@@ -75,8 +75,8 @@ try:
 
         write_current_data(temp, pinState, rpm)
         print(f"Temperature: {temp}°C, Fan State: {'On' if pinState else 'Off'}, RPM: {rpm}, Mode: {mode}, TempOn: {tempOn}, TempOff: {tempOff}")
-        sleep(1)
         rpm = (pulse_count / 2) * (60 / interval)
+        sleep(1)
         
 
 except KeyboardInterrupt:
