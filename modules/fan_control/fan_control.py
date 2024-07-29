@@ -73,10 +73,10 @@ try:
             pinState = True
             GPIO.output(controlPin, pinState)
 
-        sleep(1)
-        rpm = (pulse_count / 2) * (60 / interval)
         write_current_data(temp, pinState, rpm)
         print(f"Temperature: {temp}°C, Fan State: {'On' if pinState else 'Off'}, RPM: {rpm}, Mode: {mode}, TempOn: {tempOn}, TempOff: {tempOff}")
+        sleep(1)
+        rpm = (pulse_count / 2) * (60 / interval)
         
 
 except KeyboardInterrupt:
