@@ -1,0 +1,8 @@
+{
+    "test": {
+        "route": "test",
+        "icon": "test/static/test_icon.png",
+        "name": "Test",
+        "enable": true
+    }
+}
