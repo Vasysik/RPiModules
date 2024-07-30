@@ -13,7 +13,7 @@ def read_json(file_path):
     with open(file_path, 'r') as f:
         return json.load(f)
 
-modules_paths = read_json(os.path.join(current_dir, "modules.json"))
+modules_paths = read_json(os.path.join(parent_dir, "modules.json"))
 
 # Динамическая загрузка модулей
 modules = []
