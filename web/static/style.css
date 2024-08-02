@@ -129,14 +129,9 @@ h1 {
     background-color: var(--hover-color);
 }
 
-input[type="text"]:focus, select:focus {
-    outline: none;
-    border-color: var(--accent-color);
-}
-
 button {
     background-color: var(--accent-color);
-    color: var(--bg-secondary);
+    color: var(--text-primary);
     padding: 12px 20px;
     border: none;
     border-radius: 6px;
