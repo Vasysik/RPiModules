@@ -1,8 +1,8 @@
 {
-    "test": {
-        "route": "test",
-        "icon": "test/static/test_icon.png",
-        "name": "Test",
+    "store": {
+        "route": "store",
+        "icon": "store/static/store_icon.png",
+        "name": "Store",
         "enable": true
     }
 }

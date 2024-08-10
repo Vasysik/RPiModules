@@ -44,5 +44,8 @@ def index():
 def api_modules():
     return jsonify(modules)
 
+@app.route('/api/exit')
+def api_exit(): os._exit(0)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

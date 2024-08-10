@@ -1,0 +1,10 @@
+[
+    {
+      "name": "fan_control",
+      "repo": "https://github.com/Vasysik/RPiM-fan-control.git"
+    },
+    {
+      "name": "hamster",
+      "repo": "https://github.com/Vasysik/RPiM-hamster-kombat.git"
+    }
+  ]
